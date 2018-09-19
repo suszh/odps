@@ -194,7 +194,7 @@ WHERE {where_condition}
 
         ```
         SELECT A.*, B.*
-        FROM A JOIN B
+        FROM A LEFT JOIN B
         ON a.key = b.key and A.ds='20180101' and B.ds='20180101';
         ```
 
@@ -210,7 +210,7 @@ WHERE {where_condition}
 
         ```
         SELECT A.*, B.*
-        FROM A JOIN B
+        FROM A LEFT JOIN B
         ON a.key = b.key
         WHERE A.ds='20180101' and B.ds='20180101';
         ```
@@ -381,7 +381,7 @@ WHERE {where_condition}
 
     对于右表的过滤条件，放在`{subquery_where_condition}`和`{on_condition}`中是等价的，右表表达式不能放在`{where_condition}`中。
 
-    LEFT ANTI Join的处理逻辑是对于左表的每一条记录，都去和右表进行匹配，如果右表所有的记录都没有匹配成功，则输出左表。同样由于只输出左表，所以JOIN后的Where条件中不能写右侧的过滤条件。LEFT SEMI JOIN常常用来实现not exists的语义。
+    LEFT ANTI Join的处理逻辑是对于左表的每一条记录，都去和右表进行匹配，如果右表所有的记录都没有匹配成功，则输出左表。同样由于只输出左表，所以JOIN后的Where条件中不能写右侧的过滤条件。LEFT ANTI JOIN常常用来实现not exists的语义。
 
     1.  第一种情况，子查询中过滤：
 
